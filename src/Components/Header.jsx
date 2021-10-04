@@ -9,9 +9,8 @@ function Header() {
         <Container>
           <Navbar.Brand href="#home">MY GAMES</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/create">Ajouter un jeu</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
