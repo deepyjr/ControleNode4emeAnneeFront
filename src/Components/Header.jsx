@@ -10,7 +10,8 @@ function Header() {
           <Navbar.Brand href="#home">MY GAMES</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/create">Ajouter un jeu</Nav.Link>
+            <Nav.Link href="/create-car">Ajouter une voiture</Nav.Link>
+            <Nav.Link href="/create-driver">Ajouter un conducteur</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
