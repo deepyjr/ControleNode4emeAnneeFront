@@ -3,8 +3,10 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function AddCar() {
+    let history = useHistory();
   const [car, setCar] = React.useState({
     modele: "",
     marque: "",
@@ -14,10 +16,9 @@ function AddCar() {
 
   React.useEffect(() => {
     const sendValues = () => {
-      console.log("test", car);
       axios.post('/car', car)
       .then(function (response) {
-        console.log(response);
+        history.replace("/created");
       })
       .catch(function (error) {
         console.log(error);
