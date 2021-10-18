@@ -12,16 +12,16 @@ function EditDriver() {
     const [driver, setDriver] = React.useState({
         nom: "",
         prenom: "",
-        voiture: "",
+        voiture: {},
         image: "",
     });
   
     const [send, setSend] = React.useState(false);
     const [getValues, setGetValues] = React.useState(true);
-  
+    const [cars, setCars] = React.useState();
+
     React.useEffect(() => {
       const sendValues = () => {
-          console.log(driver)
         axios({
           method: "PUT",
           url: "https://calm-bayou-78429.herokuapp.com/driver/" + id,
@@ -29,7 +29,6 @@ function EditDriver() {
           data: driver,
         })
           .then((res) => {
-              console.log(res)
             history.replace("/updated/" + id + "/driver");
           })
           .catch((err) => {
@@ -53,8 +52,8 @@ function EditDriver() {
           .then((res) => {
             console.log(res.data);
             setDriver({
-              nom: res.data.modele,
-              prenom: res.data.marque,
+              nom: res.data.nom,
+              prenom: res.data.prenom,
               voiture: res.data.voiture,
               image: res.data.image,
             });
@@ -62,13 +61,47 @@ function EditDriver() {
           .catch((err) => {
             console.log(err);
           });
+
+          axios({
+            method: "GET",
+            url: "https://calm-bayou-78429.herokuapp.com/cars",
+            headers: { "Content-Type": "application/json" },
+          })
+            .then((res) => {
+              setCars(
+                res.data.map((value, index) => {
+                  return ( 
+                      value.immatriculation === driver.voiture.immatriculation ?
+                    <option selected>
+                      {value.marque +
+                        " " +
+                        value.modele +
+                        " - " +
+                        value.immatriculation}
+                    </option>:
+                    <option >
+                    {value.marque +
+                      " " +
+                      value.modele +
+                      " - " +
+                      value.immatriculation}
+                  </option>
+                  );
+                })
+              );
+            })
+            .catch((err) => {
+              console.log(err);
+            });
       };
+
       if (getValues) {
         getValuesDriver();
         setGetValues(false);
       }
     }, [getValues]);
-  
+
+   
     return (
       <div className="form-create">
         <Container>
@@ -115,18 +148,24 @@ function EditDriver() {
               <Form.Text className="text-muted">Facultatif</Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="Immatriculation">
-              <Form.Label>Immatriculation de la voiture</Form.Label>
-              <Form.Control
-                defaultValue={driver.immatriculation}
-                onChange={(e) => {
-                  setDriver({ ...driver, immatriculation: e.target.value });
-                }}
-                type="text"
-                required
-                placeholder="Entrer une immatriculation de voiture"
-              />
-              <Form.Text className="text-muted">Obligatoire</Form.Text>
-            </Form.Group>
+            <Form.Label>Immatriculation de la voiture</Form.Label>
+            <Form.Select
+              onChange={(e) => {
+                setDriver({
+                  ...driver,
+                  voiture: {
+                    immatriculation: e.target.value.split("-").pop(),
+                  },
+                });
+              }}
+              required
+              placeholder="Selectionner une immatriculation de voiture"
+            >
+              <option>Pas de voiture</option>
+              {cars}
+            </Form.Select>
+            <Form.Text className="text-muted">Obligatoire</Form.Text>
+          </Form.Group>
             <Button variant="primary" type="submit">
               Submit
             </Button>
