@@ -6,7 +6,9 @@ import Deleted from "./Deleted";
 import Created from "./Created";
 import AddDriver from "./AddDriver";
 import AddCar from "./AddCar";
-
+import EditCar from "./EditCar";
+import EditDriver from "./EditDriver";
+import Updated from "./Updated";
 function Layout() {
 
   return (
@@ -14,10 +16,13 @@ function Layout() {
         <Header></Header>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/deleted/:id" component={Deleted} />
-        <Route exact path="/created/:id" component={Created} />
+        <Route exact path="/deleted/:id/:type" component={Deleted} />
+        <Route exact path="/updated/:id/:type" component={Updated} />
+        <Route exact path="/created/:id/:type" component={Created} />
         <Route exact path="/create-car" component={AddCar} />
         <Route exact path="/create-driver" component={AddDriver} />
+        <Route exact path="/edit-driver/:id" component={EditDriver} />
+        <Route exact path="/edit-car/:id" component={EditCar} />
       </Switch>
     </div>
   );

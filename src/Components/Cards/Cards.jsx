@@ -24,18 +24,20 @@ function Cards(props) {
         console.log(err);
       });
   }
+
+
   return (
     <div className="cardUnit">
-      <Card style={{ width: "18rem", height: "22rem" }}>
-        <Card.Img variant="top" src={props.image} />
+      <Card style={{ width: "18rem", height: "23rem" }}>
+        <Card.Img style={{ height: "180px" }}  variant="top" src={props.image} />
         <Card.Body>
           <Card.Title>{props.modele}</Card.Title>
           <Card.Text>
             Crée par : {props.marque} <br />
-            <Badge bg="primary">{props.type}</Badge>
+            <Badge bg="primary">{props.immatriculation}</Badge>
           </Card.Text>
           <div className="containerButton">
-            <Link to={"/edit/" + props.id}>
+            <Link to={"/edit-car/" + props.id}>
               <Button className="firstBtn" variant="primary">
                 Edit
               </Button>
