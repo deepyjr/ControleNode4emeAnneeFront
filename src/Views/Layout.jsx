@@ -14,7 +14,7 @@ function Layout() {
         <Header></Header>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/delete/:id" component={Deleted} />
+        <Route exact path="/deleted/:id" component={Deleted} />
         <Route exact path="/created/:id" component={Created} />
         <Route exact path="/create-car" component={AddCar} />
         <Route exact path="/create-driver" component={AddDriver} />

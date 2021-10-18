@@ -7,7 +7,7 @@ function Header() {
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">MY GAMES</Navbar.Brand>
+          <Navbar.Brand href="#home">MY CARS</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/create-car">Ajouter une voiture</Nav.Link>
