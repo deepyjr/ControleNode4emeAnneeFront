@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { useParams } from "react-router-dom";
-function Created(props) {
+function Created() {
   let { type } = useParams();
   const [body, setBody] = React.useState();
   const [load, setLoad] = React.useState(true);

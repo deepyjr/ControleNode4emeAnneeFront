@@ -18,7 +18,7 @@ function Cards(props) {
     })
       .then((res) => {
        console.log(res);
-       history.replace("/deleted/"+id);
+       history.replace("/deleted/"+id+"/car");
       })
       .catch((err) => {
         console.log(err);

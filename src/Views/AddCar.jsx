@@ -24,7 +24,7 @@ function AddCar() {
         data: car,
       })
         .then((res) => {
-          history.replace("/created/"+res.data._id);
+          history.replace("/created/"+res.data._id+"/car");
         })
         .catch((err) => {
           console.log(err);
